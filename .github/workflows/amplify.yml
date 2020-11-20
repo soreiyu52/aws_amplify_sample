@@ -18,15 +18,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-
-
     - name: install, build and test
       run: |
         npm install
         # build and test
         # npm run build
         # npm run test
-    
+
     - name: deploy
       uses: ambientlight/amplify-cli-action@0.2.1
       with:
