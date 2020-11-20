@@ -18,10 +18,29 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: set amplify env name
+      id: setenvname
+      run: |
+        # use GITHUB_HEAD_REF that is set to PR source branch
+        # also remove -_ from branch name and limit length to 10 for amplify env restriction
+        echo "##[set-output name=amplifyenvname;]$(echo ${GITHUB_HEAD_REF//[-_]/} | cut -c-10)"
+
+    - name: deploy test environment
+      uses: ambientlight/amplify-cli-action@v0.2.1
+      with:
+        amplify_command: add_env
+        amplify_env: ${{ steps.setenvname.outputs.amplifyenvname }}
+        amplify_cli_version: '4.32.1'
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ap-northeast-1
+
     - name: configure amplify
       uses: ambientlight/amplify-cli-action@0.2.1
       with:
         amplify_command: configure
+        amplify_env: prod
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
