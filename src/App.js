@@ -24,7 +24,7 @@ const App = () => {
 
     return (
         <div className="App">
-            <h1>hello yusuke5</h1>
+            <h1>hello yusuke 6</h1>
             {
                 todos.map((todo, index) => (
                     <div key={todo.id ? todo.id : index} >
