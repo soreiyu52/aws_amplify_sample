@@ -21,7 +21,8 @@ jobs:
     - name: deploy test environment
       uses: ambientlight/amplify-cli-action@0.2.1
       with:
-        amplify_command: env get --name
+        amplify_command: env get
+        amplify_arguments: '--name'
         amplify_env: dev
         amplify_cli_version: '4.32.1'
       env:
