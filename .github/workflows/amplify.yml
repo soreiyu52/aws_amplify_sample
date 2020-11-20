@@ -26,7 +26,7 @@ jobs:
         echo "##[set-output name=amplifyenvname;]$(echo ${GITHUB_HEAD_REF//[-_]/} | cut -c-10)"
 
     - name: deploy test environment
-      uses: ambientlight/amplify-cli-action@v0.2.1
+      uses: ambientlight/amplify-cli-action@0.2.1
       with:
         amplify_command: add_env
         amplify_env: ${{ steps.setenvname.outputs.amplifyenvname }}
