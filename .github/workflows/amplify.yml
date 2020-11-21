@@ -19,19 +19,19 @@ jobs:
         amplify_command: configure
         amplify_env: dev
         project_dir: ./
-        build_command: 'yarn build'
+        build_command: 'npm build'
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ap-northeast-1
-        
+
     - name: deploy
       uses: ambientlight/amplify-cli-action@0.2.1
       with:
         amplify_command: publish
         amplify_env: dev
         project_dir: ./
-        build_command: 'yarn build'
+        build_command: 'npm build'
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
